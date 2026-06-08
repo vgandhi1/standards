@@ -22,6 +22,8 @@ Use this before opening a PR or publishing a repo publicly.
 | 7 | `plan.md` (or `docs/PLAN.md`) with status | [05-PLANNING.md](05-PLANNING.md) | Active / evolving projects |
 | 8 | `.gitignore`, CI, dependency lockfile | [06-REQUIRED-FILES.md](06-REQUIRED-FILES.md) | All git repos |
 | 9 | Security baseline (auth, SSRF, SQL, logs) | [07-SECURITY.md](07-SECURITY.md) | Services with APIs or outbound HTTP |
+| 10 | AI/LLM security (prompt injection, output validation, agent loop, RAG) | [08-AI-SECURITY.md](08-AI-SECURITY.md) | Any project calling an LLM API or running an agent |
+| 11 | Testing (offline tests, mocking, coverage, eval harness) | [09-TESTING.md](09-TESTING.md) | All projects with runnable code (T1+) |
 
 ---
 
@@ -36,6 +38,8 @@ Use this before opening a PR or publishing a repo publicly.
 | [05-PLANNING.md](05-PLANNING.md) | `plan.md` structure, status tracking, roadmap |
 | [06-REQUIRED-FILES.md](06-REQUIRED-FILES.md) | Root file tree, CI, deps, `.gitignore` |
 | [07-SECURITY.md](07-SECURITY.md) | Auth, logging, SSRF, SQL, path traversal |
+| [08-AI-SECURITY.md](08-AI-SECURITY.md) | Prompt injection, LLM output validation, agent loop safety, RAG grounding, observability, cost controls |
+| [09-TESTING.md](09-TESTING.md) | Test types, directory structure, mocking strategy, coverage gates, eval harness, fixtures |
 
 ---
 
@@ -54,17 +58,24 @@ Default branch: **`main`** for new repos. Existing repos may keep `master`; do n
 
 ---
 
-## Multi-repo folders
+## Multi-repo containers
 
-Some top-level folders hold **multiple git repos**, not one:
+Some top-level directories hold **multiple git repos** under one folder — they are not themselves a repo.
 
-| Folder | Structure | Rule |
-|--------|-----------|------|
-| `factory-system-AI/` | `factory-ops/`, `visionguard/`, `factory-digital-twin/` | Each sub-repo follows guardrails independently |
-| `Agents/` | `agent-forge/`, `ref-agents/…` | Same |
-| `Job-board-projects/` | Multiple apps | Same |
+**Rule:** Each sub-repo inside a container folder follows these guardrails independently. The container folder is not subject to these guardrails directly.
 
-Optional: add a short `README.md` at the container root listing sub-repos and links.
+**Recommended:** Add a minimal `README.md` at the container root with a table listing sub-repos, their tier, and links. This makes the portfolio navigable without opening each sub-repo.
+
+```markdown
+# <Domain or Portfolio Name>
+
+| Repo | Tier | Description |
+|------|------|-------------|
+| `service-a/` | T2 | Short description |
+| `service-b/` | T1 | Short description |
+```
+
+Do not add a root `.gitignore`, `LICENSE`, or CI workflow to the container folder — those belong to each sub-repo.
 
 ---
 

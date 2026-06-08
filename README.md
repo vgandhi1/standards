@@ -19,6 +19,8 @@ Production-grade guardrails for software repositories: environment variables, li
 | [05-PLANNING.md](05-PLANNING.md) | `plan.md` template and status tracking |
 | [06-REQUIRED-FILES.md](06-REQUIRED-FILES.md) | Root file tree, CI, coverage gates |
 | [07-SECURITY.md](07-SECURITY.md) | Auth, logging, SSRF, SQL, path traversal |
+| [08-AI-SECURITY.md](08-AI-SECURITY.md) | Prompt injection, LLM output validation, agent loop safety, RAG grounding, observability |
+| [09-TESTING.md](09-TESTING.md) | Test types, mocking strategy, coverage gates, eval harness, fixtures |
 
 ---
 

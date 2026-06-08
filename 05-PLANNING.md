@@ -128,7 +128,7 @@ Use consistently across plan and README roadmap tables:
 | ❌ | Blocked — note blocker |
 | ☁️ | Deployed to remote / pushed |
 
-Update **`Last updated`** on every meaningful plan edit.
+Update **`Last updated`** at the start of every work session — not just after major milestones. A stale date is a signal that the plan may not reflect reality. If nothing changed, update the date anyway to confirm the plan was reviewed.
 
 ---
 

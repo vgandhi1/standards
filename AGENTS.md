@@ -17,20 +17,24 @@ This file tells AI agents (Cursor, Claude Code, **agent-forge**, GitHub Copilot)
 | README or presentation | [04-README-AND-PRESENTATION.md](04-README-AND-PRESENTATION.md) |
 | Planning / roadmap | [05-PLANNING.md](05-PLANNING.md) |
 | API, auth, HTTP client, file upload | [07-SECURITY.md](07-SECURITY.md) |
+| LLM calls, agent loops, RAG, SQL generation | [08-AI-SECURITY.md](08-AI-SECURITY.md) |
+| Tests, coverage, CI | [09-TESTING.md](09-TESTING.md) |
 | Production deploy | [07-SECURITY.md](07-SECURITY.md) prod checklist + [06-REQUIRED-FILES.md](06-REQUIRED-FILES.md) T3 |
 
 ---
 
 ## agent-forge preset mapping
 
-| agent-forge preset | Standards to enforce |
-|--------------------|----------------------|
-| `intake` | Confirm tier (T0–T3); list missing guardrail files |
-| `design` | Architecture in README/plan; security constraints from [07-SECURITY.md](07-SECURITY.md) |
-| `implement` | Code + tests; no secrets; parameterized SQL; SSRF guards on outbound HTTP |
-| `test` | CI coverage gate per tier in [06-REQUIRED-FILES.md](06-REQUIRED-FILES.md) |
-| `ship` | Generate `.github/workflows/test.yml`, optional `pages.yml`, `Dockerfile`; verify [06-REQUIRED-FILES.md](06-REQUIRED-FILES.md) T3 |
-| `artifacts` | Ensure `plan.md`, README, `.env.example` synced |
+agent-forge is a scaffolding and review agent. Its **presets** are named workflow stages — each maps to a specific set of standards to enforce.
+
+| agent-forge preset | What it does | Standards to enforce |
+|--------------------|--------------|----------------------|
+| `intake` | Reads the repo and identifies tier, missing files, and open compliance gaps | Confirm tier (T0–T3); list missing guardrail files against [GUARDRAILS.md](GUARDRAILS.md) |
+| `design` | Reviews or proposes architecture: API contracts, data flow, tech stack | Architecture in README/plan; security constraints from [07-SECURITY.md](07-SECURITY.md); AI constraints from [08-AI-SECURITY.md](08-AI-SECURITY.md) if LLMs involved |
+| `implement` | Writes or reviews implementation code | Code + tests; no secrets; parameterized SQL; SSRF guards on outbound HTTP; AI output validation if LLMs used |
+| `test` | Adds or reviews test coverage | CI coverage gate per tier ([06-REQUIRED-FILES.md](06-REQUIRED-FILES.md)); test organization per [09-TESTING.md](09-TESTING.md) |
+| `ship` | Generates CI workflows, Dockerfile, verifies T2/T3 file requirements | Generate `.github/workflows/test.yml`, optional `pages.yml`, `Dockerfile`; verify [06-REQUIRED-FILES.md](06-REQUIRED-FILES.md) T3 checklist |
+| `artifacts` | Syncs documentation state: plan, README, env example | Ensure `plan.md`, README, `.env.example` agree; `Last updated` current |
 
 Example goal for agent-forge:
 
@@ -53,6 +57,8 @@ Answer **yes** to all that apply:
 - [ ] README Quick Start commands are accurate
 - [ ] Tests pass locally; CI workflow exists or was updated
 - [ ] Security rules from [07-SECURITY.md](07-SECURITY.md) respected for APIs and outbound HTTP
+- [ ] AI/LLM security rules from [08-AI-SECURITY.md](08-AI-SECURITY.md) respected (if LLMs involved)
+- [ ] Tests follow [09-TESTING.md](09-TESTING.md) conventions (if tests added or changed)
 - [ ] `plan.md` status updated if scope changed
 
 ---
@@ -69,6 +75,8 @@ When creating files, reviewing PRs, or scaffolding:
 - Start with GUARDRAILS.md compliance checklist
 - License: MIT or Apache-2.0 only — one per repo ([02-LICENSE.md](../standards/02-LICENSE.md))
 ```
+
+**Precedence rule:** Project-level `CLAUDE.md` rules take precedence over these standards for project-specific decisions (e.g. which linter, which test framework, which model). Standards define the floor; `CLAUDE.md` can raise it. Standards must not be used to override an explicit project-level constraint.
 
 No GitHub Actions workflow is required **in this standards repo** — it is documentation only. Individual project repos carry their own CI per [06-REQUIRED-FILES.md](06-REQUIRED-FILES.md).
 
@@ -94,3 +102,9 @@ No GitHub Actions workflow is required **in this standards repo** — it is docu
 - Skip `.env.example` when adding new environment variables
 - Expose stack traces or SQL errors in user-facing API responses
 - Use raw user input in SQL strings or outbound HTTP URLs
+- Execute raw LLM-generated SQL — the application layer always owns query construction
+- Override a project-level `CLAUDE.md` constraint using a standards default
+- Set LLM temperature above 0.4 in any production code path
+- Add a new LLM call site without OPIK (or equivalent) tracing
+- Silently swallow LLM tool errors — propagate as structured error objects
+- Commit model weights, large binary files, or real production data as test fixtures

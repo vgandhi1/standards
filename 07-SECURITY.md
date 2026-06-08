@@ -87,6 +87,32 @@ Reference: QualityMind-RAG upload sanitization.
 
 ---
 
+## Dependency scanning
+
+Pin dependencies to exact versions in production (apps) and allow ranges only in libraries.
+
+| Stack | Scan tool | How to run |
+|-------|-----------|------------|
+| Python | `pip-audit` | `pip install pip-audit && pip-audit` |
+| Node | `npm audit` | `npm audit --audit-level=high` |
+| Go | `govulncheck` | `govulncheck ./...` |
+
+Enable **Dependabot** on every public GitHub repo (Settings → Security → Dependabot alerts). For T3 projects, add a `dependabot.yml` to automate version PRs:
+
+```yaml
+# .github/dependabot.yml
+version: 2
+updates:
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+```
+
+Never merge a dependency update without checking the changelog for breaking changes.
+
+---
+
 ## Secrets management
 
 | Do | Don't |
@@ -110,7 +136,7 @@ Before any production deploy:
 - [ ] Upload/path handling validated
 - [ ] Generic client error messages
 - [ ] No secrets in logs or responses
-- [ ] Dependencies scanned / pinned
+- [ ] Dependencies scanned for CVEs (`pip-audit` for Python; `npm audit` for Node; Dependabot alerts enabled on GitHub) and pinned
 - [ ] HTTPS only; secure cookie flags
 
 ---

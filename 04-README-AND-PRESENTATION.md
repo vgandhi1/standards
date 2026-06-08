@@ -157,6 +157,8 @@ Do not add vanity badges.
 
 Public repos with a demo deck should ship **`presentation.html`** at repo root — a self-contained slide deck or scroll narrative for GitHub Pages.
 
+**Exception:** Skip `presentation.html` when the repo is a private utility, internal library, or scaffolding tool with no public demo. Note the exception in `plan.md` under Scope so it is intentional, not overlooked.
+
 ### Content guidelines
 
 - Problem → approach → architecture → demo → results → roadmap

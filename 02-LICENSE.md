@@ -127,7 +127,7 @@ Apache-2.0 — see [LICENSE](LICENSE).
 
 - [ ] Root `LICENSE` file exists (public repos)
 - [ ] Exactly **one** license type (MIT **or** Apache-2.0)
-- [ ] Copyright year is current or range (`2024-2026`)
+- [ ] `{YEAR}` placeholder replaced with current year or valid range (e.g. `2024–2026`)
 - [ ] README License section links to `LICENSE`
 - [ ] `pyproject.toml` / `package.json` license field matches
 - [ ] No conflicting "All rights reserved" in README
