@@ -71,7 +71,7 @@ Add to the **project repo** (not this standards repo) `.cursor/rules/` or `CLAUD
 ## Project standards
 
 When creating files, reviewing PRs, or scaffolding:
-- Follow https://github.com/vgandhi1/standards (local: ../standards/)
+- Follow the standards repo (local: ../standards/)
 - Start with GUARDRAILS.md compliance checklist
 - License: MIT or Apache-2.0 only — one per repo ([02-LICENSE.md](../standards/02-LICENSE.md))
 ```

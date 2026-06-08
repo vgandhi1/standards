@@ -18,9 +18,9 @@
 | Priority | Path | When |
 |----------|------|------|
 | **Preferred** | `plan.md` | Default for all new repos |
-| Acceptable | `docs/PLAN.md` | Docs-heavy repos (SentinelFlow pattern) |
-| Acceptable | `SPEC.md` | Factory / ops sub-repos with executable spec style |
-| Legacy | `forecast-upgrade.md`, `docs/agents_plan.md` | Rename to `plan.md` when touching docs |
+| Acceptable | `docs/PLAN.md` | Docs-heavy repos |
+| Acceptable | `SPEC.md` | Repos with an executable spec style |
+| Legacy | any other name | Rename to `plan.md` when touching docs |
 
 **Rule:** One canonical plan per repo. Do not split status across multiple plan files without cross-links.
 
@@ -97,7 +97,7 @@ One paragraph: what this project must achieve and for whom.
 
 | Repo | Integration | Status |
 |------|-------------|--------|
-| QualityMind-RAG | CLaimLens handoff → `/quality/five-why` | ✅ client exists |
+| `<upstream-repo>` | `<downstream-repo>` handoff → `/endpoint` | ✅ client exists |
 
 ---
 

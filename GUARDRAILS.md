@@ -3,7 +3,7 @@
 **Scope:** Every project repository in the workspace  
 **Last updated:** 2026-06-07
 
-These guardrails define minimum standards for **production-grade** software projects — from local development through public release and deployed services. Patterns are derived from **QualityMind-RAG**, **CLaimLens**, **AutoClaim-VLM**, **SentinelFlow**, and **agent-forge**.
+These guardrails define minimum standards for **production-grade** software projects — from local development through public release and deployed services.
 
 ---
 

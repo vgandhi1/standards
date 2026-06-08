@@ -1,8 +1,7 @@
 # AI / LLM Security Standard
 
 **Applies to:** Any project that calls an LLM API, runs an agent loop, or uses RAG  
-**Tier:** Required at **T1+** for AI projects; T2+ enforced in CI  
-**Reference implementations:** `quality-engg/QualityMind-RAG`, `quality-engg/claimlens`
+**Tier:** Required at **T1+** for AI projects; T2+ enforced in CI
 
 ---
 
@@ -31,7 +30,7 @@ response, user field) contains text that hijacks the LLM's instruction context.
 | **Validate input length** | Reject inputs exceeding the project's defined token budget for context injection (document this in `.env.example` as `MAX_INPUT_TOKENS`) |
 | **Never trust AI-generated content as safe input** | Output from one LLM call must be validated before use as input to another |
 
-### Example (QualityMind-RAG pattern)
+### Example
 
 ```python
 # BAD — injects raw record text directly into instruction context
@@ -140,7 +139,7 @@ runaway states. Every project with an agent loop must implement hard stops.
 | **Human-in-loop gate** | Any agent action that writes to a database, sends an external request, or generates a document must pause for human confirmation in `ENVIRONMENT=production` |
 | **Output contract** | Every agent step outputs a validated schema; malformed output aborts the loop, not silently continues |
 
-### Example (LangGraph pattern — QualityMind-RAG)
+### Example (LangGraph pattern)
 
 ```python
 MAX_AGENT_ITERATIONS = 10  # hard cap; document in constants.py
@@ -175,7 +174,7 @@ Applies to any project where an LLM generates or influences a SQL query.
 |------|--------|
 | **LLM generates SQL text only** | The application layer constructs and executes the final query — LLM output is an intermediate artifact, never directly executed |
 | **Parameterize all values** | LLM-suggested WHERE clause values must be injected via parameterized queries, never f-string interpolation |
-| **Blocklist dangerous statements** | Before any LLM-influenced query reaches the DB layer, run a blocklist check for `DROP`, `DELETE`, `TRUNCATE`, `ALTER`, `GRANT`, `REVOKE` — reject immediately (see `check_dangerous_sql()` in QualityMind-RAG `app/utils.py` as the reference implementation) |
+| **Blocklist dangerous statements** | Before any LLM-influenced query reaches the DB layer, run a blocklist check for `DROP`, `DELETE`, `TRUNCATE`, `ALTER`, `GRANT`, `REVOKE` — reject immediately (implement as `check_dangerous_sql()` or equivalent in your DB utility layer) |
 | **Read-only in dev** | Development database connections should use a read-only role; writes require an explicit production override |
 | **Human approval gate** | Text-to-SQL queries that touch production data must present the generated SQL to the user for approval before execution |
 

@@ -74,7 +74,7 @@ repo/
 | `presentation.html` | Demo slide deck for GitHub Pages | T2 public repos |
 | `pyproject.toml` | Python project + tool config | T1+ Python (preferred) |
 | `requirements.txt` | Pip deps (pin for apps) | T1+ Python |
-| `uv.lock` | Reproducible uv deps | Optional (agent-forge) |
+| `uv.lock` | Reproducible uv deps | Optional; recommended for agentic tooling |
 | `CONTRIBUTING.md` | Contributor guide | Optional; T3 or open collab |
 | `CHANGELOG.md` | Release history | Optional; T3 |
 
@@ -163,7 +163,7 @@ jobs:
 | Early / spike | No gate | Optional |
 | Active dev (T1) | **25%** | ruff required |
 | Release-ready ML (T2) | **50%** (raise over time) | ruff required |
-| Mature API (CLaimLens bar) | **80%** | ruff required |
+| Mature API / T3 production | **80%** | ruff required |
 
 Align repo to one tier in `plan.md` and enforce in CI with `--cov-fail-under=N`.
 
@@ -195,7 +195,7 @@ Use current major versions consistently:
 
 | Convention | Example |
 |------------|---------|
-| `tests/` (pytest default) | QualityMind-RAG, CLaimLens |
+| `tests/` (pytest default) | Python projects |
 | `test/` | Some Go projects |
 | Co-located `*_test.go` | Go standard |
 
@@ -209,7 +209,7 @@ Minimum: unit tests for business logic and API contracts at T1+.
 |------|------|
 | `docker-compose.yml` | Multi-service local dev |
 | `Makefile` | Common commands (`make test`, `make lint`) |
-| `docs/CONTRIBUTING.md` | Open collaboration (SentinelFlow pattern) |
+| `docs/CONTRIBUTING.md` | Open collaboration repos |
 | `docs/API.md` | Large API surface |
 
 ---

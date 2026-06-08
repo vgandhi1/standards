@@ -1,8 +1,7 @@
 # Testing Standard
 
 **Applies to:** All projects with runnable code (**T1+**)  
-**See also:** [06-REQUIRED-FILES.md](06-REQUIRED-FILES.md) for coverage gates, [08-AI-SECURITY.md](08-AI-SECURITY.md) for LLM-specific test requirements  
-**Reference implementations:** `quality-engg/QualityMind-RAG`, `quality-engg/claimlens`
+**See also:** [06-REQUIRED-FILES.md](06-REQUIRED-FILES.md) for coverage gates, [08-AI-SECURITY.md](08-AI-SECURITY.md) for LLM-specific test requirements
 
 ---
 
@@ -21,7 +20,7 @@
 |------|------|---------|
 | **Unit** | Pure functions, business logic, data transforms | `test_classify_label()`, `test_dangerous_sql_check()` |
 | **Integration** | Multiple components wired together with mocked I/O | API endpoint + service layer + mocked DB |
-| **Contract** | Inter-service schema compatibility | ClaimLens handoff JSON matches QualityMind `/quality/five-why` expected input |
+| **Contract** | Inter-service schema compatibility | Service A's output JSON matches Service B's expected input schema |
 | **Eval / regression** | ML model accuracy, LLM output quality | RAGAS metrics against held-out eval dataset |
 | **End-to-end** | Full stack, live dependencies | Deferred to T3 staging environment — not in CI |
 

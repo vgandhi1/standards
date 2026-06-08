@@ -43,7 +43,7 @@ Point agent-forge (or any agent) at this repo as the standards source:
 
 ```bash
 # Clone alongside your projects
-git clone https://github.com/vgandhi1/standards.git
+git clone <your-standards-repo-url>
 
 # In agent-forge goal or Cursor prompt:
 # "Follow standards in ../standards/AGENTS.md when scaffolding or reviewing the repo."

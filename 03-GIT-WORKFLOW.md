@@ -28,7 +28,7 @@ Rules:
 
 ## Commit messages
 
-Use **[Conventional Commits](https://www.conventionalcommits.org/)** — already the de facto standard across QualityMind-RAG, CLaimLens, AutoClaim-VLM, and agent-forge.
+Use **[Conventional Commits](https://www.conventionalcommits.org/)** across all repos in the workspace.
 
 ### Format
 
@@ -82,7 +82,7 @@ feat(dev): structure_check on agent routes when ENVIRONMENT=development
 
 ```bash
 # From repo root, after first commit
-git remote add origin git@github.com:vgandhi1/<repo-name>.git
+git remote add origin git@github.com:<your-username>/<repo-name>.git
 git branch -M main
 git push -u origin main
 ```

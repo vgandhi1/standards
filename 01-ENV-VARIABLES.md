@@ -17,20 +17,17 @@
 
 Every repo that reads environment variables must include **`.env.example`** at the repo root (or service root in monorepos).
 
-**Reference implementations:**
-
-- `QualityMind-RAG/.env.example` — grouped sections, inline comments
-- `Agents/agent-forge/.env.example` — copy instructions, optional vars commented out
+A well-structured `.env.example` groups variables by service, provides inline comments for every key, and marks optional vars explicitly.
 
 ### 3. Naming conventions
 
 | Pattern | Example | Use for |
 |---------|---------|---------|
-| `{SERVICE}_` prefix | `CLAIMLENS_API_KEY`, `QUALITYMIND_BASE_URL` | Service-specific vars in multi-service setups |
+| `{SERVICE}_` prefix | `UPSTREAM_API_KEY`, `UPSTREAM_BASE_URL` | Service-specific vars in multi-service setups |
 | `ENVIRONMENT` or `{SERVICE}_ENVIRONMENT` | `ENVIRONMENT=development` | Runtime mode |
 | `*_API_KEY` | `OPENAI_API_KEY`, `PINECONE_API_KEY` | External API credentials |
-| `*_URL` / `*_BASE_URL` | `DATABASE_URL`, `QUALITYMIND_BASE_URL` | HTTP or connection endpoints |
-| `*_HOST` | `AGENTFORGE_OLLAMA_HOST` | Host-only overrides (validate before use) |
+| `*_URL` / `*_BASE_URL` | `DATABASE_URL`, `UPSTREAM_BASE_URL` | HTTP or connection endpoints |
+| `*_HOST` | `OLLAMA_HOST` | Host-only overrides (validate before use) |
 
 **Rules:**
 
@@ -109,11 +106,11 @@ If the README has a Configuration section, it must:
 
 ### 7. Cross-service URLs
 
-When one repo calls another (e.g. CLaimLens → QualityMind):
+When one service calls another, define the target's base URL and key as env vars in the calling repo:
 
 ```bash
-QUALITYMIND_BASE_URL=http://localhost:8000
-QUALITYMIND_API_KEY=
+UPSTREAM_SERVICE_BASE_URL=http://localhost:8000
+UPSTREAM_SERVICE_API_KEY=
 ```
 
 - Use `*_BASE_URL` without trailing slash.

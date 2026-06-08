@@ -64,7 +64,7 @@ When user input influences outbound URLs:
 4. Allow only `http`/`https` and safe ports (80, 443).
 5. Do not forward internal auth headers to external hosts.
 
-Reference: CLaimLens `qualitymind_client.py` SSRF guards, agent-forge Ollama host validation.
+Apply these rules to any HTTP client that accepts a URL derived from user input or configuration.
 
 ---
 
@@ -75,7 +75,7 @@ Reference: CLaimLens `qualitymind_client.py` SSRF guards, agent-forge Ollama hos
 - Resolve final path and confirm it stays within intended directory (`pathlib.Path.resolve()`).
 - Generate safe upload filenames (UUID) instead of trusting original names.
 
-Reference: QualityMind-RAG upload sanitization.
+Apply these rules to any endpoint that accepts file uploads or constructs file paths from input.
 
 ---
 

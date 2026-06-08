@@ -1,14 +1,13 @@
 # README and Presentation Standard
 
-**Applies to:** All projects; full template at **T2 (Release-ready)**  
-**Reference:** `QualityMind-RAG/README.md`, `AutoClaim-VLM/README.md`
+**Applies to:** All projects; full template at **T2 (Release-ready)**
 
 ---
 
 ## README principles
 
 1. **First screen** answers: What is this? Who is it for? How do I run it?
-2. **No personal bios** in technical README — keep product/engineering focus (see agent-forge github-repository guidance).
+2. **No personal bios** in technical README — keep product/engineering focus.
 3. Link to live demo when available.
 4. Keep Quick Start copy-pasteable and tested.
 
@@ -61,7 +60,7 @@ All T1 sections, plus:
 
 ### One-line value proposition
 
-### ▶ [**Live presentation**](https://vgandhi1.github.io/<repo>/presentation.html) · [GitHub](https://github.com/vgandhi1/<repo>)
+### ▶ [**Live presentation**](https://<your-username>.github.io/<repo>/presentation.html) · [GitHub](https://github.com/<your-username>/<repo>)
 
 [![Python 3.12+](https://img.shields.io/badge/Python-3.12+-3776AB?style=flat-square&logo=python&logoColor=white)](https://python.org)
 <!-- add stack-specific badges -->
@@ -90,7 +89,7 @@ All T1 sections, plus:
 
 ### Setup
 \`\`\`bash
-git clone https://github.com/vgandhi1/<repo>.git
+git clone https://github.com/<your-username>/<repo>.git
 cd <repo>
 cp .env.example .env   # fill in keys
 pip install -r requirements.txt
@@ -147,7 +146,7 @@ Use flat-square style consistently. Include only badges that reflect real depend
 - Language/runtime (Python, Go, Node)
 - Primary framework (FastAPI, React)
 - Key infra (AWS, PostgreSQL, Pinecone)
-- CI status (optional): `![CI](https://github.com/vgandhi1/<repo>/actions/workflows/test.yml/badge.svg)`
+- CI status (optional): `![CI](https://github.com/<your-username>/<repo>/actions/workflows/test.yml/badge.svg)`
 
 Do not add vanity badges.
 
@@ -168,7 +167,7 @@ Public repos with a demo deck should ship **`presentation.html`** at repo root �
 
 ### Existing examples
 
-Repos with working `presentation.html`: QualityMind-RAG, AutoClaim-VLM, CLaimLens, aegis, SentinelFlow, ecommerce-demand-forecast
+Any public repo with a demo story should ship `presentation.html`.
 
 ---
 
@@ -211,12 +210,12 @@ jobs:
         uses: actions/deploy-pages@v4
 ```
 
-**Alternative:** `peaceiris/actions-gh-pages@v4` publishing to `gh-pages` branch (used in SentinelFlow, aegis).
+**Alternative:** `peaceiris/actions-gh-pages@v4` publishing to `gh-pages` branch.
 
 ### Pages URL convention
 
 ```
-https://vgandhi1.github.io/<repo-name>/presentation.html
+https://<your-username>.github.io/<repo-name>/presentation.html
 ```
 
 Enable Pages in repo Settings → Pages → Source: GitHub Actions (or `gh-pages` branch).
@@ -229,7 +228,7 @@ For public repos, set via GitHub UI or `gh repo edit`:
 
 | Field | Guidance |
 |-------|----------|
-| Description | One technical line (see agent-forge example) |
+| Description | One technical line — what it does, not what you hope it becomes |
 | Website | Pages URL or leave blank |
 | Topics | 5–15 relevant tags (`python`, `fastapi`, `rag`, etc.) |
 
