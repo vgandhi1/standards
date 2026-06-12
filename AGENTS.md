@@ -39,16 +39,23 @@ the enforceable subset.
 
 ## agent-forge preset mapping
 
-agent-forge is a scaffolding and review agent. Its **presets** are named workflow stages — each maps to a specific set of standards to enforce.
+agent-forge is a scaffolding and review agent. Its **presets** are named workflow stages — each maps to a specific set of standards to enforce. Preset names mirror agent-forge's `core/phases.py` (the source of truth); keep this table in sync with that list.
 
-| agent-forge preset | What it does | Standards to enforce |
-|--------------------|--------------|----------------------|
-| `intake` | Reads the repo and identifies tier, missing files, and open compliance gaps | Confirm tier (T0–T3); list missing guardrail files against [COMPLIANCE.md](COMPLIANCE.md) |
-| `design` | Reviews or proposes architecture: API contracts, data flow, tech stack | Architecture in README/plan; security constraints from [07-SECURITY.md](07-SECURITY.md); AI constraints from [08-AI-SECURITY.md](08-AI-SECURITY.md) if LLMs involved |
-| `implement` | Writes or reviews implementation code | Code + tests; no secrets; parameterized SQL; SSRF guards on outbound HTTP; AI output validation if LLMs used |
-| `test` | Adds or reviews test coverage | CI coverage gate per tier ([06-REQUIRED-FILES.md](06-REQUIRED-FILES.md)); test organization per [09-TESTING.md](09-TESTING.md) |
-| `ship` | Generates CI workflows, Dockerfile, verifies T2/T3 file requirements | Generate `.github/workflows/test.yml`, optional `pages.yml`, `Dockerfile`; verify [06-REQUIRED-FILES.md](06-REQUIRED-FILES.md) T3 checklist |
-| `artifacts` | Syncs documentation state: plan, README, env example | Ensure `plan.md`, README, `.env.example` agree; `Last updated` current |
+| agent-forge preset | Phases | Standards to enforce |
+|--------------------|--------|----------------------|
+| `full` | pm → architect → backend → qa → devops | The whole [COMPLIANCE.md](COMPLIANCE.md) checklist at the target tier (T0–T3) |
+| `intake` | pm | Confirm tier (T0–T3); list missing guardrail files against [COMPLIANCE.md](COMPLIANCE.md) |
+| `design` | pm → architect | Architecture in README/plan; security constraints from [07-SECURITY.md](07-SECURITY.md); AI constraints from [08-AI-SECURITY.md](08-AI-SECURITY.md) if LLMs involved |
+| `implement` | backend | Code + tests; no secrets; parameterized SQL; SSRF guards on outbound HTTP; AI output validation if LLMs used |
+| `test` | qa | CI coverage gate per tier ([06-REQUIRED-FILES.md](06-REQUIRED-FILES.md)); test organization per [09-TESTING.md](09-TESTING.md) |
+| `ship` | devops | Generate `.github/workflows/test.yml`, optional `pages.yml`, `Dockerfile`; verify [06-REQUIRED-FILES.md](06-REQUIRED-FILES.md) T3 checklist |
+| `improve` | backend → qa | Keep tests green; no scope creep beyond the goal; [09-TESTING.md](09-TESTING.md) conventions |
+| `debug` | qa → backend → qa | Reproduce → patch → re-verify; add a regression test ([09-TESTING.md](09-TESTING.md)) |
+| `fix` | backend → qa | Apply the known fix + covering test; respect [07-SECURITY.md](07-SECURITY.md) |
+| `harden` | qa → backend → devops | Production readiness: [07-SECURITY.md](07-SECURITY.md) prod checklist + [06-REQUIRED-FILES.md](06-REQUIRED-FILES.md) T3 |
+| `data` / `ml` / `factory` | domain crews | Same floor (security + testing) plus the relevant domain rules; for AI/LLM work see [08-AI-SECURITY.md](08-AI-SECURITY.md) |
+
+> No `artifacts` preset exists in agent-forge — document syncing (`plan.md`, README, `.env.example`) is handled by the `--list-artifacts` flag and the `ship`/`full` phases, not a standalone preset.
 
 Example goal for agent-forge:
 
