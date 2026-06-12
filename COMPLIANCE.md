@@ -1,7 +1,10 @@
-# Project Guardrails
+# Project Standards — Compliance Index & Checklist
+
+> Renamed from `GUARDRAILS.md` (2026-06-12) to end the clash with the sibling **Guardrails** repo.
+> This file is repo **hygiene** (T0–T3 maturity); behavior guardrails (Tier 1/2/3) live in `Guardrails/`.
 
 **Scope:** Every project repository in the workspace  
-**Last updated:** 2026-06-07
+**Last updated:** 2026-06-12
 
 These guardrails define minimum standards for **production-grade** software projects — from local development through public release and deployed services.
 

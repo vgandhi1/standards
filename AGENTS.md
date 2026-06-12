@@ -2,7 +2,21 @@
 
 This file tells AI agents (Cursor, Claude Code, **agent-forge**, GitHub Copilot) how to use this standards repo when working on project codebases.
 
-**Do not skip:** Load [GUARDRAILS.md](GUARDRAILS.md) for the compliance checklist before marking work complete.
+**Do not skip:** Load [COMPLIANCE.md](COMPLIANCE.md) for the compliance checklist before marking work complete.
+
+---
+
+## Relationship to the Guardrails behavior layer
+
+This repo governs **repo hygiene only** (env, license, CI, README, security, planning). It does **not**
+define how the assistant should behave. For that — Tier 1/2/3 behavior rules, the safety baseline
+(read-only by default, PII redaction, escalation, grounding), and the machine-enforced `.cursor` rules —
+load the sibling **Guardrails** repo's behavior layer (`Guardrails/core/CLAUDE.md` + its `AGENTS.md`).
+
+A project adopting both keeps **one** root `AGENTS.md` carrying behavior, and loads this repo's checklist
+for hygiene. The two are complementary: behavior (Guardrails) + hygiene (here). Security overlaps both —
+`07-SECURITY.md` here is the canonical app-security substance; Guardrails' `.cursor` security rule mirrors
+the enforceable subset.
 
 ---
 
@@ -29,7 +43,7 @@ agent-forge is a scaffolding and review agent. Its **presets** are named workflo
 
 | agent-forge preset | What it does | Standards to enforce |
 |--------------------|--------------|----------------------|
-| `intake` | Reads the repo and identifies tier, missing files, and open compliance gaps | Confirm tier (T0–T3); list missing guardrail files against [GUARDRAILS.md](GUARDRAILS.md) |
+| `intake` | Reads the repo and identifies tier, missing files, and open compliance gaps | Confirm tier (T0–T3); list missing guardrail files against [COMPLIANCE.md](COMPLIANCE.md) |
 | `design` | Reviews or proposes architecture: API contracts, data flow, tech stack | Architecture in README/plan; security constraints from [07-SECURITY.md](07-SECURITY.md); AI constraints from [08-AI-SECURITY.md](08-AI-SECURITY.md) if LLMs involved |
 | `implement` | Writes or reviews implementation code | Code + tests; no secrets; parameterized SQL; SSRF guards on outbound HTTP; AI output validation if LLMs used |
 | `test` | Adds or reviews test coverage | CI coverage gate per tier ([06-REQUIRED-FILES.md](06-REQUIRED-FILES.md)); test organization per [09-TESTING.md](09-TESTING.md) |
@@ -72,7 +86,7 @@ Add to the **project repo** (not this standards repo) `.cursor/rules/` or `CLAUD
 
 When creating files, reviewing PRs, or scaffolding:
 - Follow the standards repo (local: ../standards/)
-- Start with GUARDRAILS.md compliance checklist
+- Start with COMPLIANCE.md compliance checklist
 - License: MIT or Apache-2.0 only — one per repo ([02-LICENSE.md](../standards/02-LICENSE.md))
 ```
 

@@ -79,7 +79,7 @@ One paragraph: what this project must achieve and for whom.
 - [ ] Cross-service handoff tested
 
 ### M3 — Release-ready
-- [ ] Guardrails compliance (see GUARDRAILS.md)
+- [ ] Guardrails compliance (see COMPLIANCE.md)
 - [ ] Presentation updated
 
 ---

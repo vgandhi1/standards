@@ -1,7 +1,7 @@
 # Required Files and Repository Structure
 
 **Applies to:** All git repositories  
-**See also:** [GUARDRAILS.md](GUARDRAILS.md) maturity tiers
+**See also:** [COMPLIANCE.md](COMPLIANCE.md) maturity tiers
 
 ---
 

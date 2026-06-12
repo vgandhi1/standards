@@ -2,7 +2,7 @@
 
 Production-grade guardrails for software repositories: environment variables, licensing, git workflow, documentation, CI, security, and planning.
 
-**Start here:** [GUARDRAILS.md](GUARDRAILS.md)
+**Start here:** [COMPLIANCE.md](COMPLIANCE.md)
 
 ---
 
@@ -10,7 +10,7 @@ Production-grade guardrails for software repositories: environment variables, li
 
 | File | Topic |
 |------|-------|
-| [GUARDRAILS.md](GUARDRAILS.md) | Master index and compliance checklist |
+| [COMPLIANCE.md](COMPLIANCE.md) | Master index and compliance checklist |
 | [AGENTS.md](AGENTS.md) | Instructions for AI agents and agent-forge |
 | [01-ENV-VARIABLES.md](01-ENV-VARIABLES.md) | `.env.example`, naming, dev/prod modes |
 | [02-LICENSE.md](02-LICENSE.md) | MIT or Apache-2.0 (one per repo) |
@@ -33,7 +33,7 @@ Production-grade guardrails for software repositories: environment variables, li
 | T2 | Release-ready (public, licensed, CI, demo) |
 | T3 | Production deployed service |
 
-See [GUARDRAILS.md](GUARDRAILS.md) for the full checklist per tier.
+See [COMPLIANCE.md](COMPLIANCE.md) for the full checklist per tier.
 
 ---
 

@@ -1,7 +1,10 @@
 # Security Baseline Standard
 
 **Applies to:** Services with HTTP APIs, databases, file I/O, or outbound HTTP (**T1+**; production checklist at **T3**)  
-**Aligns with:** Workspace Cursor rules (logging, SSRF, SQL, path traversal, auth, CSRF/XSS)
+**Canonical source** for app-security substance. The Guardrails repo's `.cursor` rule
+`10-security-baseline.mdc` machine-enforces the always-applied subset (secrets, parameterized SQL, SSRF,
+input validation, logging); keep it in sync with this file. Behavior-safety (read-only, PII redaction,
+escalation) is a separate axis — see Guardrails `core/safety-baseline.md`.
 
 ---
 
